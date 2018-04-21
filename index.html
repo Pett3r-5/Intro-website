@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <link href="bootstrap.css" rel="stylesheet"/>
+		<link href="custom.css" rel="stylesheet"/>
+        
+        
+        
+        <script>
+            
+            window.onload = function() {
+            //$(document).ready(function(){ //só carrega o script depois de todo o html ter sido carregado. precisa usar quando o script tá na head.
+				/*
+                //faz o mesmo que o código seguinte, mas usando parent(div)/children(buttons) pra selecionar os itens:
+                
+				var theParent = document.getElementById("botoes");
+ 
+				for (var i = 0; i < theParent.children.length; i++){
+                    (function(i){
+    				    var childElement = theParent.children[i];
+    				    childElement.addEventListener('click', function(){ location.assign(childElement.innerHTML.toLowerCase()+".html");}, false);
+				    }) (i);
+                }
+                mais em: http://meshfields.de/event-listeners-for-loop/
+                
+				
+				var botoes = document.getElementsByTagName("button"); //pega todos os botoes. forma uma espécie de array de botoes.
+                
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                    
+                    myObj = JSON.parse(this.responseText);
+                        
+                    for(var i = 0; i<myObj.length; i++){ 
+                        (function(i){
+                        //abre uma nova janela com o arquivo que tenha o mesmo nome do botao+.html:
+                            botoes[i].innerHTML = myObj[i];
+                            botoes[i].addEventListener("click", function(){ location.assign(botoes[i].innerHTML.toLowerCase()+".html");}, false); //false serve pro evento nao bubblear (subir e afetar as outras tags na árvore do documento)
+                        }) (i);
+                    }
+                    
+                };
+                xmlhttp.open("GET", "/home/edisonpetter/www/wiking/scandir_json.php", true);
+                xmlhttp.send(); 
+                
+                
+                
+                var botoes = $('button');
+                
+				$.getJSON("/home/edisonpetter/www/wiking/scandir_json.php", function(data){
+                    
+                });
+				*/ 
+				
+                
+                //var botoes = $("button"); //pega todos os botoes. forma uma espécie de array de botoes.
+				
+                $('#wordpress').click(function(){
+                    $.getJSON("jason.json", function(data){ 
+                        //abre uma nova janela com o arquivo que tenha o mesmo nome do botao+.html:
+                           $('#wordpress').html(data.name);
+				    });
+                    
+                });
+				
+                
+                
+                
+                
+                /*
+				var botoes = document.getElementsByTagName("button"); //pega todos os botoes. forma uma espécie de array de botoes.
+				
+
+				$.getJSON("/home/edisonpetter/www/wiking/jason.json", function(data){
+					for(var i = 0; i<botoes.length; i++){
+						(function(i){
+						
+                        
+                        //abre uma nova janela com o arquivo que tenha o mesmo nome do botao+.html:
+                            botoes[i].innerHTML = data[i];
+                         	botoes[i].addEventListener("click", function(){ location.assign(botoes[i].innerHTML.toLowerCase()+".html");}, false); //false serve pro evento nao bubblear (subir e afetar as outras tags na árvore do documento)
+                        
+                    	
+                    	}) (i);
+                	};
+				});
+				
+				
+                
+                 for(var i = 0; i<botoes.length; i++){ 
+                    (function(i){
+                     //abre uma nova janela com o arquivo que tenha o mesmo nome do botao+.html:
+                        botoes[i].addEventListener("click", function(){ location.assign(botoes[i].innerHTML.toLowerCase()+".html");}, false); //false serve pro evento nao bubblear (subir e afetar as outras tags na árvore do documento)
+                    }) (i);
+                    //para o loop de events funcionar, diferente do java,  precisa ter essa function(i) dentro do loop e o (i) no final. Explicação:
+                    //https://www.kirupa.com/html5/handling_events_for_many_elements.htm
+				}
+				
+				//
+				
+				
+            	botoes.onclick = function(){
+                    //location.assign(ss+".html");
+                    
+                    
+                    document.location = botoes[0].innerHTML.toLowerCase()+".html";
+                    //window.open("wordpress.html");
+                    
+                    
+                }
+               
+            */ 
+            
+				
+            
+            };
+            
+        </script>
+        <title>wiking</title>
+    </head>
+    <body>
+        
+        
+        
+        <h3> Wiking</h3>
+        <div class="btn-group" role="group" aria-label="Basic example">
+		  <button type="button" class="btn btn-secondary">Left</button>
+		  <button type="button" class="btn btn-secondary">Middle</button>
+		  <button type="button" class="btn btn-secondary">Right</button>
+		</div>
+		<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+		<script src="bootstrap.min.js"></script>
+    </body>
+</html>

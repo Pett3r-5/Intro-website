@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="Cache-control" content="no-cache">
+        <meta http-equiv="Cache-control" content="no-store">
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="sobrecss.css" rel="stylesheet"/>
+		
+        
+        <script>
+            
+            $(document).ready(function() {
+                
+                //preventdefault()
+                   
+                //$('#itemms').hover(function(){
+                   // $('#itemms').css('height', '512px');
+                //},
+                // function(){
+                   // $('#itemms').css('height', '512px');
+                //}
+               // );
+                $.ajaxSetup({ cache: false });
+
+                var nomes = [];
+                var concat = "";
+                
+                $("#botaoAJAX").click(function(){
+                    $("#ajaxTexto").css("display", "flex");
+                    $.getJSON("nomes.json", function(data){
+                        
+                        for(var i = 0; i<data.length; i++){
+                            (function(i){
+                                
+                                concat = concat+data[i]+", "+"\n";
+                                }) (i);
+                        }
+                        
+                        $("#ajaxTexto").html(concat);
+                           
+                    });
+                    concat = "";
+                    
+                });
+                
+                
+                
+                
+                
+                if($(window).width()<= 1300)
+                    document.getElementById("excecao").style.visibility = "hidden";
+                
+                
+                if($(window).width()<= 810){
+                   $("#footer").css("display","none");
+                   $("#footerTwo").css("display","flex");
+                    }
+                else{
+                   $("#footer").css("display","flex");
+                   $("#footerTwo").css("display","none");
+                  }  
+                    
+                if($(window).width()<= 635)
+                    $("#tituloo").css("min-width","80%");
+                //document.getElementsByTagName("li").style.visibility = "hidden";
+                  //  document.getElementsById("tituloLi").style.visibility = "hidden";
+                
+                
+                if($(window).width()<= 500)
+                    $('#linhaParagrafo').removeAttr('id'); //remove atributos, nesse caso, o id
+                
+                
+                
+                var botoes = $(".buttonArray"); 
+				
+
+                 for(var i = 0; i<botoes.length; i++){ 
+                    (function(i){
+                     //abre uma nova janela com o arquivo que tenha o mesmo nome do botao+.html:
+                        botoes[i].addEventListener("click", function(){ location.assign(botoes[i].innerHTML.toLowerCase()+".html");}, false); 
+                    }) (i);
+                    //para o loop de events funcionar, diferente do java,  precisa ter essa function(i) dentro do loop e o (i) no final. Explicação:
+                    
+				}
+				
+                var keyboardcat = $('#itemms');
+                
+                keyboardcat[0].onclick = function(){
+                    window.open("https://www.youtube.com/watch?v=O2ulyJuvU3Q");
+                };
+                
+                //keyboardcat[1].onclick = function(){
+                    //window.open("https://www.youtube.com/watch?v=O2ulyJuvU3Q");
+                //};
+                
+                //keyboardcat[2].onclick = function(){
+                  //  window.open("https://www.youtube.com/watch?v=O2ulyJuvU3Q");
+                //};
+                
+                
+                
+                //for(var i = 0; i<keyboardcat.length; i++){ 
+                   // (function(i)){
+                   // keyboardcat[i].addEventListener("click", function(){window.open("wordpress.html");});
+                  //  });
+                // }(i);    
+                
+            
+            });
+            
+            $(window).resize(function(){ //funcao que modifica coisa toda vez que o tamanho da tela é mudado. é uma responsividade sem bootstrap
+               if($(window).width()<= 810){ //se a tela ficar menor que 810pixels isso acontece
+                   $("#footer").css("display","none"); //jquery manipulando o css. display:none torna um elemento invisivel. diferente de element.visibility = invisible, display none tira tambem o elemento do flow do html (ele nao afeta os posicionamentos mais)
+                   $("#footerTwo").css("display","flex");
+               }
+                else{
+                    $("#footer").css("display","flex");
+                   $("#footerTwo").css("display","none");
+                }
+                if($(window).width()<= 1300)
+                    document.getElementById("excecao").style.visibility = "hidden";
+                else
+                    document.getElementById("excecao").style.visibility = "visible";
+                
+                if($(window).width()<= 576){
+                    $('#linhaParagrafo').removeAttr('id'); //remove o id que adiciona a linha de separaçao entre os paragrafos. remove quando vira 1 paragrafo só
+                    }
+                else{
+                    $('#primeiro').children(":first").attr('id', 'linhaParagrafo'); //adiciona o id de novo. pra fazer isso ele pega o elemento de cima, daí pega o primeiro filho desse elemento. faz isso pq, como o id foi removido, nao existe nenhum identificador pra determinar qual dos paragrafos vai receber o id de novo.
+                    }
+                if($(window).width()<= 635)
+                    $("#tituloo").css("min-width","80%");
+                else
+                    $("#tituloo").css("min-width","")
+                    
+            });
+            
+            
+            
+        </script>
+        
+        
+        
+        
+        <title>Apresentação</title>
+    </head>
+    <body>
+        
+        <div id="botoes" align= "center">
+            <button type="button" id="buttonLeft" class="buttonArray">Sobre</button>
+            <button type="button" id="buttonRight" class="buttonArray">Contato</button>
+        </div>
+        
+        <img class="img-fluid" alt="Responsive image" src="titulo.png" id="tituloo"/>
+        <img id="sub" align="center" src="SUBTITULO.png"/>
+        
+        
+        
+        
+        
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="excecao">
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+            <div class="modal-dialog" name="exampleModal" role="document" >
+                <div class="modal-content" >
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Teste</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="justify-content: center;" align="center">
+                        <img src="13470404.png;compress=true.png" style="box-shadow: 3px 5px 10px #888888; justify-content: center;"/>
+                        <br>
+                        <br>
+                        Obrigado por clicar.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="container" >
+            <div class="row">
+                <div class="col-sm" id="subtexto">
+                    <i>
+                        <span id="firstletter2">L</span>orem ipsum dolor sit amet, consectetur adipiscing elit. In feugiat leo ut augue placerat, nec imperdiet magna rhoncus. Mauris lorem massa, iaculis vitae fermentum tincidunt, semper non leo. Aenean vestibulum urna turpis, ut varius ipsum malesuada quis. Sed suscipit, magna et aliquam hendrerit, sapien nunc euismod nunc, nec suscipit sapien lorem in erat.
+                        </i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container" id="espaco" id2="">
+            
+        
+        </div>
+        
+        <div class="container" id="contTexto">
+  			<div class="row" id="primeiro">
+  			  	<div class="col-sm" id="linhaParagrafo">
+                   <p>
+   				   <span id="firstletter">L</span>orem ipsum dolor sit amet, consectetur adipiscing elit. In feugiat leo ut augue placerat, nec imperdiet magna rhoncus. Mauris lorem massa, iaculis vitae fermentum tincidunt, semper non leo. Aenean vestibulum urna turpis, ut varius ipsum malesuada quis. Sed suscipit, magna et aliquam hendrerit, sapien nunc euismod nunc, nec suscipit sapien lorem in erat. Sed fermentum tristique quam pulvinar venenatis. Sed tincidunt dui at elit commodo placerat. Pellentesque tincidunt erat nunc, ac posuere mauris cursus dignissim. Etiam fringilla, est id hendrerit tempus, ex ex eleifend turpis, eu bibendum quam est in ante.
+                   </p>
+                    <p>
+                    Sed maximus ultrices ligula vel efficitur. Sed sagittis, nulla et sodales varius, ex purus egestas ex, vitae maximus tortor ante porta sem. Nullam consectetur eros justo, quis sollicitudin ligula hendrerit sit amet. Etiam eget risus at lectus pellentesque faucibus eget non massa. Etiam ut ante mattis, sollicitudin arcu id, finibus enim. Etiam urna odio, placerat nec risus vitae, facilisis placerat magna. Donec accumsan turpis sit amet elementum vulputate. 
+                   </p>
+        
+  			  	</div>
+   			 	<div class="col-sm">
+                <p>
+    			 Praesent nec sagittis diam, at porta turpis. In et quam ullamcorper leo fermentum suscipit sit amet sagittis magna. Suspendisse luctus maximus ligula et commodo. Donec mattis euismod egestas. In eu ullamcorper magna. Nulla porttitor luctus tempus. Proin leo velit, hendrerit vel convallis in, auctor et eros. Maecenas sit amet diam consectetur, convallis ipsum et, auctor magna. Nunc ac leo non nunc faucibus lobortis nec at elit. Praesent convallis eget velit eu dignissim. Suspendisse lectus nibh, fringilla fermentum orci in, condimentum condimentum lectus. Nullam iaculis luctus ultrices. Nullam laoreet sem at viverra iaculis. Etiam sit amet sagittis dolor.
+ 			    </p>
+                    <p>
+                    Curabitur id pulvinar lorem, sed viverra turpis. Praesent pretium nisl lacus, quis ullamcorper risus suscipit dignissim. Phasellus tincidunt lorem in lorem semper, id rhoncus sapien pellentesque. Nullam feugiat tellus non odio convallis, et sodales magna lobortis. Praesent gravida ligula tempor ipsum convallis finibus. Duis laoreet, risus eget facilisis finibus, lectus lorem tristique eros, id laoreet diam magna sit amet enim. Aliquam eget ligula sit amet massa dignissim condimentum sit amet vel arcu. Donec mattis dolor nec massa gravida rutrum. 
+                        </p>
+    			</div>
+    			
+                
+  			</div>
+            
+		</div>
+		
+		
+        <div class="container-fluid" id="caixas">
+            
+                         <div id="itemms">
+                             <!-- um div com borda pronto: <div style="margin: 0 auto; height: 80%; width: 80%; border-style: solid; border-width: 4px; border-color: rgb(50, 200, 200); ; border-radius: 10%; box-shadow: 3px 5px 10px #888888;">
+                                 </div>-->
+                             <img id="icone" class="img-fluid" style="max-width: 27%; height: auto; margin-top:-12%;" src="paint-bucket.png"/>
+                                  <div><h3 style="display: flex; justify-content: center; margin-top: 11%; color: rgb(87, 240, 191); font-family: Myriad Pro Regular;">Opção Um</h3></div>
+                                    <div><ul style="padding-left: 0; text-align: center; margin-top: 9%; color: rgb(87, 240, 180);">
+                                        <li style="display: block; font-family: Myriad Pro Regular; color: rgb(87, 240, 220)"><i>Pellentesque tincidunt</i></li>
+                                        <li style="display: block;"><div style="border-radius: 30%; height: 5px; width: 60%; background-color:rgb(50, 200, 200);  margin: 0 auto; margin-top: 3%; margin-bottom: 3%; box-shadow: 1px 2px 5px #888888;"></div></li>
+                                        <li style="display: block; font-family: Myriad Pro Regular; color: rgb(87, 240, 220)"><i>Pellentesque tincidunt erat nu</i></li>
+                                        <li style="display: block;"><div style="border-radius: 30%; height: 5px; width: 30%; background-color:rgb(50, 200, 200);  margin: 0 auto; margin-top: 3%; margin-bottom: 3%; box-shadow: 1px 2px 5px #888888;"></div></li>
+                                        <li style="display: block; font-family: Myriad Pro Regular; color: rgb(87, 240, 220)"><i>eee</i></li>
+                                    </ul></div>
+                             
+                             
+                             
+                             
+                             
+                           
+                             
+                         </div>
+            
+        
+                         <div id="itemms">
+                             <img class="img-fluid" style="max-width: 27%; height: auto; margin-top:-12%;" src="quality.png"/>
+                                  <div><h3 style="display: flex; justify-content: center; margin-top: 11%; color: rgb(87, 240, 191); font-family: Myriad Pro Regular;">Opção Dois</h3></div>
+                                    <div><ul style="padding-left: 0; text-align: center; margin-top: 9%; color: rgb(87, 240, 180);">
+                                        <li style="display: block; font-family: Myriad Pro Regular; color: rgb(87, 240, 220)"><i>odio convallis</i></li>
+                                        <li style="display: block;"><div style="border-radius: 30%; height: 5px; width: 60%; background-color:rgb(50, 200, 200);  margin: 0 auto; margin-top: 3%; margin-bottom: 3%; box-shadow: 1px 2px 5px #888888;"></div></li>
+                                        <li style="display: block; font-family: Myriad Pro Regular; color: rgb(87, 240, 220)"><i>mattis</i></li>
+                                        <li style="display: block;"><div style="border-radius: 30%; height: 5px; width: 30%; background-color:rgb(50, 200, 200);  margin: 0 auto; margin-top: 3%; margin-bottom: 3%; box-shadow: 1px 2px 5px #888888;"></div></li>
+                                        <li style="display: block; font-family: Myriad Pro Regular; color: rgb(87, 240, 220)"><i>sodales magna lobortis</i></li>
+                                    </ul></div>
+                         </div>
+			             
+                
+                         <div id="itemms">
+                             <img class="img-fluid" style="max-width: 27%; height: auto; margin-top:-12%;" src="idea.png"/>
+                                  <div><h3 style="display: flex; justify-content: center; margin-top: 11%; color: rgb(87, 240, 191); font-family: Myriad Pro Regular;">Opção Três</h3></div>
+                                    <div><ul style="padding-left: 0; text-align: center; margin-top: 9%; color: rgb(87, 240, 180);">
+                                        <li style="display: block; font-family: Myriad Pro Regular; color: rgb(87, 240, 220)"><i>Pellentesque tincidunt</i></li>
+                                        <li style="display: block;"><div style="border-radius: 30%; height: 5px; width: 60%; background-color:rgb(50, 200, 200);  margin: 0 auto; margin-top: 3%; margin-bottom: 3%; box-shadow: 1px 2px 5px #888888;"></div></li>
+                                        <li style="display: block; font-family: Myriad Pro Regular; color: rgb(87, 240, 220)"><i>nulla</i></li>
+                                        <li style="display: block;"><div style="border-radius: 30%; height: 5px; width: 30%; background-color:rgb(50, 200, 200);  margin: 0 auto; margin-top: 3%; margin-bottom: 3%; box-shadow: 1px 2px 5px #888888;"></div></li>
+                                        <li style="display: block; font-family: Myriad Pro Regular; color: rgb(87, 240, 220)"><i>ullamcorper risus</i></li>
+                                    </ul></div>
+                         </div>
+			             
+                
+        </div>
+        
+        <div class="container" >
+            <div class="row" style=" justify-content: center; padding:2%; margin-top: 9%; border-style: solid; border-width: 2px; border-color: aquamarine; border-radius: 2%; margin-left: 30%; margin-right: 30%">
+            <form method="POST" action="apende_json.php" id="ajaxForm" target="fake" style="margin-bottom:5%; justify-content: center; text-align: center; width:90%;">
+			  <div class="form-group">
+			    <p style="margin-bottom: -20%; text-align: center;">Visitante, escreva no mural:</p><br>
+			    <input type="text" name="nomeAjax" required type="text" class="form-control" id="exampleFormControlInput1" placeholder="diz">
+			  </div>
+                
+			  <input type="submit"  data-toggle="modal" data-target="#exampleModal" id="botaoForm" style="margin-top:2%; justify-content: center;"/> <br>
+            
+			</form>
+
+                
+                </p>
+            </div>
+            <div class="row" style=" justify-content: center; padding:2%; margin-top: 9%; border-style: solid; border-width: 2px; border-color: aquamarine; border-radius: 2%; margin-left: 30%; margin-right: 30%; margin-top:2%">
+                <button id="botaoAJAX" class="btn btn-primary" style="margin-top:5%">Puxar mural por AJAX</button>
+
+<p id="ajaxTexto" style="background-color: rgb(200, 30, 84); padding-top: 5%; padding: 7%; height: 500px; width: 90%; display: none; text-align: center; justify-content: center; margin-top: 5%; color: rgb(233, 184, 184); border-radius: 2%; padding-top: 2%; margin-top: 2%">
+</div>
+
+
+            
+        <iframe width="0" height="0" border="0" name="fake" id="fake" style="display:none"></iframe>
+        
+        
+        
+        </div>
+        
+        
+        
+        <div class="container" >
+            
+            <div class="row">
+				     <div class="col-sm" id="subtexto">
+			             <img src="Ryeouokmadri0gex4zvu.gif" id="mario"/>
+                
+                </div>
+            </div>
+        </div>
+        
+        
+        
+		
+        <footer id="footer">
+            <div class="container-fluid" id="Contfooter">
+                <div class="row" >
+  			  	<div class="col-sm">
+                
+                <ul>
+                    <li id="tituloLi">
+                    Newsletters
+                    </li>
+                    <li>
+                    ipsum
+                    </li>  
+                    <li>
+                    teste
+                    </li>
+                    <li>
+                    informacao
+                    </li>
+                    <li>
+                    informacao
+                    </li>
+                    
+                </ul>
+        
+  			  	</div>
+                    
+                <div class="col-sm">
+                  
+                    <ul>
+                        <li id="tituloLi">
+                    Footer
+                    </li>
+                    <li>
+                    ipsum
+                    </li>  
+                    <li>
+                    informacao
+                    </li>
+                    <li>
+                    ipsum
+                    </li>
+                        <li>
+                    ipsum
+                    </li>
+                    
+                </ul>
+  			  	</div>
+                
+                <div class="col-sm">
+                  <ul>
+                      <li id="tituloLi">
+                    Exemplo
+                    </li>
+                    <li>
+                    ipsum
+                    </li>  
+                    <li>
+                    informacao
+                    </li>
+                    <li>
+                    ipsum
+                    </li>
+                    <li>
+                    ipsum
+                    </li> 
+                </ul>
+        
+  			  	</div>
+                
+                
+   			 	<div class="col-sm">
+                    <ul>
+                         <li id="tituloLi">
+                    Titulo
+                    </li>
+                    <li>
+                    ipsum
+                    </li>  
+                    <li>
+                    lorem
+                    </li>
+                    <li>
+                    informacao
+                    </li>
+                        <li>
+                    informacao
+                    </li>
+                    
+                </ul>
+    			</div>
+    			
+                <div class="col-sm">
+                    <ul>
+                         <li id="tituloLi">
+                    More
+                    </li>
+                    <li>
+                    ipsum
+                    </li>  
+                    <li>
+                    lorem
+                    </li>
+                    <li>
+                    informacao
+                    </li>
+                        <li>
+                    informacao
+                    </li>
+                    
+                </ul>
+    			</div>
+  			</div>
+                <div class="row" style="justify-content: center; margin-top:1%; border-top: 1px solid rgb(46, 100, 100);">
+                   
+                    <p style="color: rgb(50,150,150); align:center;">
+                        Orders by U.S. trade bookstores and wholesalers. Please contact Big Distribution: Tel: (800) 800-8000; Fax: (800) 800-8001 or visit 
+                        
+                        </p>
+                    
+                
+            </div>
+                <div class="row" style="justify-content: center; margin-top:-3%">
+                   
+                    <p style="color: rgb(50,150,150); align:center;">
+                        
+                        Copyright © 2010 by Bill Shakespeare
+                        </p>
+                    
+                </div>
+            </div>
+        </footer>
+        
+        <footer id="footerTwo">
+            <div class="container-fluid" id="Contfooter">
+                <div class="row" style="justify-content: center; margin-left:20%; margin-right:20%;">
+  			  	    <div class="col-sm" style="text-align: center; color: rgb(50,150,150); align:center; font-size: 80%;">
+                        Newsletters
+                    </div>
+                    <div class="col-sm" style="text-align: center; color: rgb(50,150,150); align:center; font-size: 80%;">
+                        Footer
+                    </div>
+                    <div class="col-sm" style="text-align: center; color: rgb(50,150,150); align:center; font-size: 80%;">
+                        Exemplo
+                    </div>
+                </div>
+                <div class="row" style="justify-content: center; margin-left:30%; margin-right:30%;">
+                    <div class="col-sm" style="text-align: center; color: rgb(50,150,150); align:center; font-size: 80%;">
+                        Titulo
+                    </div>
+                    <div class="col-sm" style="text-align: center; color: rgb(50,150,150); align:center; font-size: 80%;">
+                        More
+                    </div>
+                </div>
+                <div class="row" style="justify-content: center; margin-top:1%; border-top: 1px solid rgb(46, 100, 100);">
+                   
+                    <p style="color: rgb(50,150,150); align:center; font-size: 80%;">
+                        Orders by U.S. trade bookstores and wholesalers. Please contact Big Distribution: Tel: (800) 800-8000; Fax: (800) 800-8001 or visit 
+                        
+                        </p>
+                    
+                
+            </div>
+                <div class="row" style="justify-content: center; margin-top:-3%;">
+                   
+                    <p style="color: rgb(50,150,150); align:center; font-size: 80%;">
+                        
+                        Copyright © 2010 by Bill Shakespeare
+                        </p>
+                    
+                </div>
+            </div>
+        </footer>
+	
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    
+    </body>
+</html>
+		

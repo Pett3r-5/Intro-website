@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/home/edisonpetter/www/wiking/bootstrap-2.3.2/docs/assets/css/custom.css"/>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="/home/edisonpetter/www/wiking/bootstrap-2.3.2/docs/assets/css/bootstrap.css"/>
+        
+        <script src="/home/www/wiking/bootstrap-2.3.2" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        
+        <script>
+            window.onload = function() {
+                var botoes = document.getElementsByTagName("button");
+            
+                for(var i = 0; i<botoes.length; i++){ 
+                        (function(i){
+                     //abre uma nova janela com o arquivo que tenha o mesmo nome do botao+.html:
+                            botoes[i].addEventListener("click", function(){ location.assign(botoes[i].innerHTML.toLowerCase()+".html");}, false); //false serve pro evento nao bubblear (subir e afetar as outras tags na árvore do documento)
+                        }) (i);
+                    //para o loop de events funcionar, diferente do java,  precisa ter essa function(i) dentro do loop e o (i) no final. Explicação:
+                    //https://www.kirupa.com/html5/handling_events_for_many_elements.htm
+                }
+            }
+                
+        </script>
+        
+        <title>Presentation</title>
+    </head>
+    <body>
+        <div class="btn-group" role="group" aria-label="Basic example" align="center">
+            <button type="button" class="btn btn-secondary">Sobre</button>
+            <button type="button" class="btn btn-secondary">Contato</button>
+            <button type="button" class="btn btn-secondary">Seila</button>
+            
+            
+        </div>
+    </body>
+    
+</html>
